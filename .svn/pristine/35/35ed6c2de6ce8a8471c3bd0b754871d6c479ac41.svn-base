@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 这里的命名空间的命名,需要和对应的接口的名称一样 -->
+<mapper namespace="demo.mapper.UserMapper">
+	<!-- 表和类的映射关系 -->
+	<resultMap type="demo.model.User" id="userRM">
+		<id property="id" column="id" />
+		<result property="name" column="username" />
+		<result property="password" column="password" />
+	</resultMap>
+	
+	<select id="findById" parameterType="int" resultType="demo.model.User">
+		select * from t_user where id=#{id}
+	</select>
+	
+	<select id="find" resultMap="userRM">
+		select * from t_user
+	</select>
+
+</mapper>
